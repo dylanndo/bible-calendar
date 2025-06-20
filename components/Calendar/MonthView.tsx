@@ -125,11 +125,7 @@ export default function MonthView({ events = [], month, day, year, }: MonthViewP
                 date.getDate() === todayDate;
               const isCurrentMonth = cellType === 'current';
 
-              const dayEvents = isCurrentMonth
-                ? events.filter(
-                    e => e.date === date.toISOString().slice(0, 10)
-                  )
-                : [];
+              const dayEvents = events.filter(e => e.date === date.toISOString().slice(0, 10));
               const maxEventsToShow = 3;
               const extraCount = dayEvents.length - maxEventsToShow;
 
@@ -154,13 +150,12 @@ export default function MonthView({ events = [], month, day, year, }: MonthViewP
                       </Text>
                     )}
                   </View>
-                  {isCurrentMonth &&
-                    dayEvents.slice(0, maxEventsToShow).map(event => (
+                  {dayEvents.slice(0, maxEventsToShow).map(event => (
                       <View key={event.id} style={styles.eventBlock}>
                         <Text style={styles.eventText}>{event.firstName}</Text>
                       </View>
                     ))}
-                  {isCurrentMonth && extraCount > 0 && (
+                  {extraCount > 0 && (
                     <Text style={styles.moreText}>+{extraCount} more</Text>
                   )}
                 </View>
