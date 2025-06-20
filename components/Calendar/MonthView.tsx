@@ -126,7 +126,7 @@ export default function MonthView({ events = [], month, day, year, }: MonthViewP
               const isCurrentMonth = cellType === 'current';
 
               const dayEvents = events.filter(e => e.date === date.toISOString().slice(0, 10));
-              const maxEventsToShow = 3;
+              const maxEventsToShow = 4;
               const extraCount = dayEvents.length - maxEventsToShow;
 
               return (
@@ -156,7 +156,7 @@ export default function MonthView({ events = [], month, day, year, }: MonthViewP
                       </View>
                     ))}
                   {extraCount > 0 && (
-                    <Text style={styles.moreText}>+{extraCount} more</Text>
+                    <Text style={styles.ellipsis}>...</Text>
                   )}
                 </View>
               );
@@ -253,4 +253,14 @@ const styles = StyleSheet.create({
     color: '#999',
     marginTop: 2,
   },
+  ellipsis: {
+    fontSize: 16,
+    color: '#888',
+    marginTop: -5,
+    fontWeight: '900',
+    letterSpacing: 1,
+    alignSelf: 'flex-start',
+    paddingLeft: 4,
+    },
+
 });
